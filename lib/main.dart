@@ -57,7 +57,7 @@ class ChatScreenState extends State<ChatScreen> {
   final String fcmServerKey = 'VOTRE_LEGACY_SERVER_KEY';
   final ScrollController _scrollController = ScrollController();
 
-  final String apiKey = "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";
+  final String apiKey = "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";
   final String apiUrl = "https://openrouter.ai/api/v1/chat/completions";
   String email = "khalilouerghemmi@gmail.com";
 
