@@ -57,7 +57,8 @@ class ChatScreenState extends State<ChatScreen> {
   final String fcmServerKey = 'VOTRE_LEGACY_SERVER_KEY';
   final ScrollController _scrollController = ScrollController();
 
-  final String apiUrl = "https://hotel-assistant-chatbot.onrender.com/api/askOpenRouter";
+  final String apiUrl = "https://openrouter.ai/api/v1/chat/completions";
+  final String apiKey = "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";
   String email = "khalilouerghemmi@gmail.com";
 
   // Création d'une conversation dans Firestore
@@ -206,9 +207,11 @@ class ChatScreenState extends State<ChatScreen> {
       final response = await http.post(
         Uri.parse(apiUrl),
         headers: {
+          'Authorization': 'Bearer $apiKey',
           'Content-Type': 'application/json',
         },
         body: jsonEncode({
+          "model": "microsoft/mai-ds-r1:free",
           "messages": _buildChatContext() + [{"role": "user", "content": userMessage}],
         }),
       );
@@ -334,9 +337,11 @@ class ChatScreenState extends State<ChatScreen> {
         final response = await http.post(
           Uri.parse(apiUrl),
           headers: {
+            'Authorization': 'Bearer $apiKey',
             'Content-Type': 'application/json',
           },
           body: jsonEncode({
+            "model": "microsoft/mai-ds-r1:free",
             "messages": [
               {
                 "role": "system",
