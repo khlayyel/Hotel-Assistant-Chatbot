@@ -206,7 +206,7 @@ app.post('/api/askOpenRouter', async (req, res) => {
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer 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',
+        'Authorization': 'Bearer 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',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
