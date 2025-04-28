@@ -26,6 +26,9 @@ const serviceAccountPath = fs.existsSync('./service-account.json')
   ? './service-account.json'
   : '/etc/secrets/service-account.json';
 
+console.log('Chemin utilisé pour le service account :', serviceAccountPath);
+console.log('Existe ? ', fs.existsSync(serviceAccountPath));
+
 const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, 'utf8'));
 
 // Initialisation de Firebase Admin SDK
