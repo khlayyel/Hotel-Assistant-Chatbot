@@ -385,7 +385,7 @@ class ChatScreenState extends State<ChatScreen> {
       // Appel du micro-service Node.js qui utilise Admin SDK (API V1)
       try {
         final resp = await http.post(
-          Uri.parse('http://localhost:3000/sendNotification'),
+          Uri.parse('https://hotel-assistant-chatbot.onrender.com/sendNotification'),
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode({
             'title': 'Client en attente',

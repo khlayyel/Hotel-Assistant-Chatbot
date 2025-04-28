@@ -10,6 +10,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const admin = require('firebase-admin');
 const nodemailer = require('nodemailer');
+const fs = require('fs');
+const path = require('path');
 
 // Configuration Gmail
 const transporter = nodemailer.createTransport({
@@ -20,8 +22,11 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// Chargez votre fichier service-account.json téléchargé depuis Google Cloud Console
-const serviceAccount = require('./service-account.json');
+const serviceAccountPath = fs.existsSync('./service-account.json')
+  ? './service-account.json'
+  : '/etc/secrets/service-account.json';
+
+const serviceAccount = require(serviceAccountPath);
 
 // Initialisation de Firebase Admin SDK
 admin.initializeApp({
