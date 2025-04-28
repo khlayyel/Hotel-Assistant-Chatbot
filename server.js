@@ -26,7 +26,7 @@ const serviceAccountPath = fs.existsSync('./service-account.json')
   ? './service-account.json'
   : '/etc/secrets/service-account.json';
 
-const serviceAccount = require(serviceAccountPath);
+const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, 'utf8'));
 
 // Initialisation de Firebase Admin SDK
 admin.initializeApp({
