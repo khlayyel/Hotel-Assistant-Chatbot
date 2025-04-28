@@ -199,6 +199,28 @@ app.get('/conversation/:conversationId', async (req, res) => {
   }
 });
 
+// === Proxy sécurisé pour OpenRouter ===
+app.post('/api/askOpenRouter', async (req, res) => {
+  const { messages } = req.body;
+  try {
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer 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',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: "microsoft/mai-ds-r1:free",
+        messages: messages,
+      }),
+    });
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Lancement du serveur sur le port 3000
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
